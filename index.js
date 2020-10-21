@@ -20,22 +20,20 @@ exports.handleMessage = async (hook_name, ctx, cb) => {
 exports.authenticate = async (hook_name, ctx, cb) => {
   console.debug('ep_termin_app_integration.authenticate', ctx.req.path)
 
-  if (ctx.req.headers.authorization && ctx.req.headers.authorization.search('Basic ') === 0) {
-    const userpass = Buffer.from(ctx.req.headers.authorization.split(' ')[1], 'base64').toString().split(':')
-    const username = userpass.shift()
-    const password = userpass.join(':')
+  if (ctx.username && ctx.password) {
     const response = await fetch(settings.ep_termin_app_integration.api, {
       method: 'post',
       body: JSON.stringify({
-        email: username,
-        password
+        email: ctx.username,
+        password: ctx.password
       }),
       headers: { 'Content-Type': 'application/json' }
     })
+    const userData = await response.json()
 
     if (response.ok) {
       ctx.req.session.user = {
-        username,
+        username: userData.displayName,
         is_admin: false
       }
       return cb([true])
