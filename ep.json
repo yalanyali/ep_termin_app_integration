@@ -1,0 +1,14 @@
+{
+    "parts": [
+        {
+            "name": "ep_termin_app_integration",
+            "hooks": {
+                "authenticate": "ep_termin_app_integration/index",
+                "handleMessage": "ep_termin_app_integration/index"
+            },
+            "client_hooks": {
+                "postAceInit": "ep_termin_app_integration/static/js/disable:postAceInit"
+            }
+        }
+    ]
+}

@@ -1,0 +1,16 @@
+{
+  "name": "ep_termin_app_integration",
+  "description": "Etherpad plugin for Termin App integration, has a very specific use case.",
+  "version": "1.0.1",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yalanyali/ep_termin_app_integration.git"
+  },
+  "dependencies": {
+    "node-fetch": "^2.6.1"
+  },
+  "engines": {
+    "node": ">= 10.13.0"
+  }
+}

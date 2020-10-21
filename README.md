@@ -1,0 +1,1 @@
+Etherpad plugin for Termin App integration, has a very specific use case.
