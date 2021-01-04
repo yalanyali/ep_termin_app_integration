@@ -7,7 +7,6 @@ const authorManager = require('ep_etherpad-lite/node/db/AuthorManager')
 const API_URL = process.env.TERMIN_APP_API_URL
 
 exports.expressConfigure = function (hook_name, args, cb) {
-
   args.app.use(express.json())
   args.app.use(express.urlencoded({ extended: true }))
 
@@ -26,11 +25,10 @@ exports.preAuthorize = (hook_name, ctx, cb) => {
   }
   if (ctx.req.path.startsWith('/static')) return cb([true])
   console.warn('FAILED PREAUTH', ctx.req.is('application/x-www-form-urlencoded'))
-  return cb([]);
+  return cb([])
 }
 
 exports.authenticate = async (hook_name, ctx, cb) => {
-
   console.warn('ep_termin_integration.authenticate', ctx.req.path)
 
   if (!ctx.req.is('application/x-www-form-urlencoded')) {
@@ -62,7 +60,6 @@ exports.authenticate = async (hook_name, ctx, cb) => {
   } else {
     return cb([false])
   }
-
 }
 
 exports.authnFailure = function (hook_name, context, cb) {
